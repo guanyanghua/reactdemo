@@ -1,6 +1,6 @@
 import { announcements, eventPlans } from "../services/adminData.js";
 
-export function EventsPage() {
+export function EventsPage({ onNotify }) {
   return (
     <>
       <section className="page-toolbar">
@@ -9,8 +9,20 @@ export function EventsPage() {
           <h2>活动公告</h2>
         </div>
         <div className="toolbar-actions">
-          <button className="secondary-button" type="button">预览公告</button>
-          <button className="primary-button" type="button">新建活动</button>
+          <button
+            className="secondary-button"
+            onClick={() => onNotify?.("公告预览窗口待接入")}
+            type="button"
+          >
+            预览公告
+          </button>
+          <button
+            className="primary-button"
+            onClick={() => onNotify?.("新建活动表单待接入")}
+            type="button"
+          >
+            新建活动
+          </button>
         </div>
       </section>
 
@@ -47,7 +59,13 @@ export function EventsPage() {
                   <strong>{plan.title}</strong>
                   <span>{plan.detail}</span>
                 </div>
-                <button className="text-button" type="button">编辑</button>
+                <button
+                  className="text-button"
+                  onClick={() => onNotify?.(`正在编辑：${plan.title}`)}
+                  type="button"
+                >
+                  编辑
+                </button>
               </article>
             ))}
           </div>

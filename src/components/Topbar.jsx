@@ -1,4 +1,4 @@
-export function Topbar({ activeSection, sections }) {
+export function Topbar({ activeSection, sections, user, onLogout, onNotify }) {
   const current = sections.find((section) => section.id === activeSection);
 
   return (
@@ -10,13 +10,24 @@ export function Topbar({ activeSection, sections }) {
       <div className="topbar-actions">
         <label className="search-box">
           <span>搜索</span>
-          <input placeholder="玩家 ID / 订单号 / 区服" />
+          <input
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                onNotify?.(`已搜索：${event.currentTarget.value || "空关键词"}`);
+              }
+            }}
+            placeholder="玩家 ID / 订单号 / 区服"
+          />
         </label>
-        <button className="secondary-button" type="button">
-          消息 12
+        <button
+          className="secondary-button"
+          onClick={() => onNotify?.(`当前账号：${user?.display_name ?? "管理员"}`)}
+          type="button"
+        >
+          {user?.display_name ?? "管理员"}
         </button>
-        <button className="primary-button" type="button">
-          发布活动
+        <button className="primary-button" onClick={onLogout} type="button">
+          退出登录
         </button>
       </div>
     </header>

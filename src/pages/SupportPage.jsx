@@ -1,6 +1,6 @@
 import { supportTickets } from "../services/adminData.js";
 
-export function SupportPage() {
+export function SupportPage({ onNotify }) {
   return (
     <>
       <section className="page-toolbar">
@@ -9,8 +9,20 @@ export function SupportPage() {
           <h2>客服工单</h2>
         </div>
         <div className="toolbar-actions">
-          <button className="secondary-button" type="button">分配客服</button>
-          <button className="primary-button" type="button">创建工单</button>
+          <button
+            className="secondary-button"
+            onClick={() => onNotify?.("分配客服功能待接入")}
+            type="button"
+          >
+            分配客服
+          </button>
+          <button
+            className="primary-button"
+            onClick={() => onNotify?.("创建工单表单待接入")}
+            type="button"
+          >
+            创建工单
+          </button>
         </div>
       </section>
 
@@ -29,7 +41,13 @@ export function SupportPage() {
                 <span>{ticket.player} · {ticket.server}</span>
               </div>
               <p>{ticket.message}</p>
-              <button className="text-button" type="button">回复</button>
+              <button
+                className="text-button"
+                onClick={() => onNotify?.(`正在回复：${ticket.title}`)}
+                type="button"
+              >
+                回复
+              </button>
             </article>
           ))}
         </div>

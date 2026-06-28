@@ -1,6 +1,7 @@
 import { DataTable } from "../components/DataTable.jsx";
 import { MetricCard } from "../components/MetricCard.jsx";
 import { StatusBadge } from "../components/StatusBadge.jsx";
+import { ApiPlayersPage } from "./ApiPlayersPage.jsx";
 import {
   announcements,
   gameServers,
@@ -11,9 +12,10 @@ import {
   reviewTasks,
 } from "../services/adminData.js";
 
-export function OverviewPage() {
+export function OverviewPage({ onNotify }) {
   return (
     <>
+    
       <section className="metric-grid" aria-label="核心数据">
         {metrics.map((item) => (
           <MetricCard key={item.label} item={item} />
@@ -27,7 +29,11 @@ export function OverviewPage() {
               <p className="panel-kicker">Revenue</p>
               <h2>近 7 日流水趋势</h2>
             </div>
-            <button className="secondary-button" type="button">
+            <button
+              className="secondary-button"
+              onClick={() => onNotify?.("报表导出任务已创建")}
+              type="button"
+            >
               导出报表
             </button>
           </div>
@@ -68,12 +74,14 @@ export function OverviewPage() {
           kicker="Players"
           columns={["玩家", "等级", "区服", "充值", "状态"]}
           rows={playerRows}
+          onViewAll={() => onNotify?.("请从左侧进入玩家管理查看完整列表")}
         />
         <DataTable
           title="订单流水"
           kicker="Orders"
           columns={["订单号", "商品", "金额", "渠道", "状态"]}
           rows={paymentOrders}
+          onViewAll={() => onNotify?.("请从左侧进入充值订单查看完整列表")}
         />
       </section>
 
@@ -92,7 +100,11 @@ export function OverviewPage() {
                   <strong>{task.title}</strong>
                   <span>{task.detail}</span>
                 </div>
-                <button className="text-button" type="button">
+                <button
+                  className="text-button"
+                  onClick={() => onNotify?.(`已进入处理：${task.title}`)}
+                  type="button"
+                >
                   处理
                 </button>
               </article>
@@ -106,7 +118,11 @@ export function OverviewPage() {
               <p className="panel-kicker">Notice</p>
               <h2>公告与活动</h2>
             </div>
-            <button className="primary-button" type="button">
+            <button
+              className="primary-button"
+              onClick={() => onNotify?.("新建公告功能待接入表单")}
+              type="button"
+            >
               新建
             </button>
           </div>
@@ -121,6 +137,7 @@ export function OverviewPage() {
           </div>
         </div>
       </section>
+      <ApiPlayersPage />
     </>
   );
 }

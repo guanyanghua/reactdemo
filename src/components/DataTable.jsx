@@ -1,6 +1,6 @@
 import { StatusBadge } from "./StatusBadge.jsx";
 
-export function DataTable({ title, kicker, columns, rows }) {
+export function DataTable({ title, kicker, columns, rows, onViewAll }) {
   return (
     <div className="panel table-panel">
       <div className="panel-header">
@@ -8,7 +8,7 @@ export function DataTable({ title, kicker, columns, rows }) {
           <p className="panel-kicker">{kicker}</p>
           <h2>{title}</h2>
         </div>
-        <button className="secondary-button" type="button">
+        <button className="secondary-button" onClick={onViewAll} type="button">
           查看全部
         </button>
       </div>

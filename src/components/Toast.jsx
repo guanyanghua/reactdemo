@@ -1,0 +1,14 @@
+export function Toast({ message, onClose }) {
+  if (!message) {
+    return null;
+  }
+
+  return (
+    <div className="toast" role="status">
+      <span>{message}</span>
+      <button type="button" onClick={onClose}>
+        关闭
+      </button>
+    </div>
+  );
+}

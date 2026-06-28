@@ -1,7 +1,7 @@
 import { StatusBadge } from "../components/StatusBadge.jsx";
 import { gameConfigs, gameServers } from "../services/adminData.js";
 
-export function GamesPage() {
+export function GamesPage({ onNotify }) {
   return (
     <>
       <section className="page-toolbar">
@@ -10,8 +10,20 @@ export function GamesPage() {
           <h2>游戏配置</h2>
         </div>
         <div className="toolbar-actions">
-          <button className="secondary-button" type="button">保存草稿</button>
-          <button className="primary-button" type="button">发布配置</button>
+          <button
+            className="secondary-button"
+            onClick={() => onNotify?.("游戏配置草稿已暂存")}
+            type="button"
+          >
+            保存草稿
+          </button>
+          <button
+            className="primary-button"
+            onClick={() => onNotify?.("发布配置接口待接入")}
+            type="button"
+          >
+            发布配置
+          </button>
         </div>
       </section>
 

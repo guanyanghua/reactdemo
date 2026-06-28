@@ -38,6 +38,85 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.68;
+}
+
+.login-page {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.12), transparent 42%),
+    var(--bg);
+}
+
+.login-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  width: min(900px, 100%);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.login-copy {
+  display: grid;
+  align-content: center;
+  gap: 14px;
+  padding: 44px;
+  background: #101827;
+  color: #ffffff;
+}
+
+.login-copy h1,
+.login-copy p {
+  margin: 0;
+}
+
+.login-copy p:last-child {
+  color: #cbd5e1;
+  line-height: 1.8;
+}
+
+.login-form {
+  display: grid;
+  align-content: center;
+  gap: 16px;
+  padding: 36px;
+}
+
+.login-form label {
+  display: grid;
+  gap: 8px;
+}
+
+.login-form span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.login-form input {
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: 0;
+}
+
+.login-form input:focus {
+  border-color: var(--primary);
+}
+
+.login-form small {
+  color: var(--muted);
+}
+
 .admin-shell {
   display: grid;
   grid-template-columns: 260px minmax(0, 1fr);
@@ -247,6 +326,13 @@ button {
 .page-toolbar h2 {
   margin-top: 4px;
   font-size: 24px;
+}
+
+.sync-text {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 .toolbar-actions {
@@ -560,6 +646,48 @@ td {
   line-height: 1.6;
 }
 
+.empty-state,
+.error-state {
+  padding: 28px;
+  border-radius: 8px;
+  background: var(--surface-soft);
+  text-align: center;
+}
+
+.empty-state {
+  color: var(--muted);
+}
+
+.error-state {
+  color: var(--danger);
+}
+
+.toast {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 14px 16px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  color: #1e3a8a;
+  background: #eff6ff;
+  box-shadow: var(--shadow);
+}
+
+.toast button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  background: var(--primary);
+}
+
 @media (max-width: 1080px) {
   .admin-shell {
     grid-template-columns: 1fr;
@@ -586,6 +714,10 @@ td {
 }
 
 @media (max-width: 760px) {
+  .login-panel {
+    grid-template-columns: 1fr;
+  }
+
   .topbar,
   .topbar-actions {
     align-items: stretch;
